@@ -1,16 +1,12 @@
 export const dynamic = "force-dynamic";
 
-export default async function Page({ searchParams }) {
-  const url = searchParams?.url;
-
-  if (!url) {
-    return <div>Please provide ?url=https://www.tahaairwaves.com</div>;
-  }
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/clone?url=${encodeURIComponent(url)}`,
-    { cache: "no-store" }
-  );
+export default async function Page() {
+  const res = await fetch("https://www.tahaairwaves.com", {
+    headers: {
+      "User-Agent": "Mozilla/5.0",
+    },
+    cache: "no-store",
+  });
 
   const html = await res.text();
 
